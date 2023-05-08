@@ -95,7 +95,7 @@ const render = () => {
     }
 
     document.getElementById('bestScore').innerHTML = `Meilleur : ${bestScore}`;
-    // document.getElementById('currentScore').innerHTML = `Actuel : ${currentScore}`;
+    document.getElementById('currentScore').innerHTML = `Actuel : ${currentScore}`;
     // fait jouer en boucle la focntion render
     window.requestAnimationFrame(render);
 }
