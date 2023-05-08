@@ -8,7 +8,7 @@ let gamePlaying = false;
 const gravity = 0.8;
 const speed = 8;
 const size = [51, 36];
-const jump = -15;
+const jump = -12;
 const cTenth = (canvas.width / 10);
 
 //pipe settings
