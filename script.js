@@ -4,13 +4,18 @@ const img = new Image();
 img.src = './media/flappy-bird-set.png';
 
 // general settings
-
 let gamePlaying = false;
-const gravity =.5;
-const speed = 6.2;
+const gravity = 1;
+const speed = 10;
 const size = [51, 36];
-const jump = -11.5;
+const jump = -15;
 const cTenth = (canvas.width / 10);
+
+//pipe settings
+const pipeWidth = 78;
+const pipeGap = 270;
+const pipeLoc = () => (Math.random() * ((canvas.height - (pipeGap + pipeWidth)) - pipeWidth)) + pipeWidth;
+
 
 let index = 0,
     bestScore = 0,
@@ -18,6 +23,16 @@ let index = 0,
     pipes = [],
     flight,
     flyHeight;
+
+// function set-up
+const setup = () => {
+    currentScore = 0;
+    flight = jump;
+    flyHeight = (canvas.height / 2) - (size[1] / 2);
+
+    //génère les trois premiers tuyaux 
+    pipes = Array(3).fill().map((a, i) => [canvas.width + (i * (pipeGap + pipeWidth)), pipeLoc()]);
+} 
 
 // fucntion animation
 const render = () => {
@@ -33,9 +48,10 @@ const render = () => {
         ctx.drawImage(img, 432, Math.floor((index % 9) / 3) * size[1], ...size, cTenth, flyHeight, ...size);
         // On donne la graviter a flight
         flight += gravity;
-        // on donne une valeur a flyHeight (quel ets la valeur la plus basse) entre la valeur de l'oiseu et celle du canvas ce qui fait descendre l'oiseau
+        // on donne une valeur a flyHeight (quel ets la valeur la plus basse) entre la valeur de l'oiseu et celle du canvas ce qui fait descendre l'oiseau et evite surout que l'oiseau disparaisse au moment de toucher le sol
         flyHeight = Math.min(flyHeight + flight, canvas.height - size[1])
     }else {
+        //animation de l'oiseau
         //découpe et replacement de l'image de loiseau qui crée lanimation utilisation des paramètre plus haut
         ctx.drawImage(img, 432, Math.floor((index % 9) / 3) * size[1], ...size, ((canvas.width /2) - size [0] / 2), flyHeight, ...size);
         flyHeight = (canvas.height / 2) - (size[1] / 2);
@@ -46,9 +62,33 @@ const render = () => {
         ctx.fillText('Cliquer pour jouer', 48, 535);
         ctx.font = "bold 30px courier";
     }
+
+    // pipe dispay
+    if (gamePlaying) {
+        pipes.map(pipe => {
+            pipe[0] -= speed;
+
+            //top pipe
+            ctx.drawImage(img, 432, 588 - pipe[1], pipeWidth, pipe[1], pipe[0], 0,pipeWidth,pipe[1]);
+            // bottom pipe
+            ctx.drawImage(img, 432 + pipeWidth, 108, pipeWidth, canvas.height - pipe[1] + pipeGap, pipe[0], pipe[1] + pipeGap , pipeWidth, canvas.height - pipe[1] + pipeGap);
+
+            if (pipe[0] <= -pipeWidth) {
+                currentScore++;
+                bestScore = Math.max(bestScore, currentScore);
+
+                //remove pipe + create new one
+                pipes = [...pipes.slice(1), [pipes[pipes.length-1][0] + pipeGap + pipeWidth, pipeLoc()]];
+                console.log(pipes);
+
+            }
+        })
+    }
     // fait jouer en boucle la focntion render
     window.requestAnimationFrame(render);
 }
+// Quand on relande la page
+setup();
 // au chargement de l'image
 img.onload = render;
 // Lance la partie
