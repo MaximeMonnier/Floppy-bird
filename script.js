@@ -2,11 +2,12 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const img = new Image();
 img.src = './media/flappy-bird-set.png';
+const actuel = document.getElementById('currentScore');
 
 // general settings
 let gamePlaying = false;
 const gravity = 0.8;
-const speed = 8;
+let speed = 8;
 const size = [51, 36];
 const jump = -12;
 const cTenth = (canvas.width / 10);
@@ -27,6 +28,7 @@ let index = 0,
 // function set-up
 const setup = () => {
     currentScore = 0;
+    speed = 8;
     flight = jump;
     flyHeight = (canvas.height / 2) - (size[1] / 2);
 
@@ -39,9 +41,10 @@ const render = () => {
     index++;
 
     // animation du background
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height, - ((index* (speed / 2)) % canvas.width) + canvas.width, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height, - ((index * (speed / 2)) % canvas.width) + canvas.width, 0, canvas.width, canvas.height);
     // Création d'un deuxieme background pour fluidifier l'annimation de l'arrière plan
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height, - ((index* (speed / 2)) % canvas.width), 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height, - ((index * (speed / 2)) % canvas.width), 0, canvas.width, canvas.height);
+    
 
     if (gamePlaying) {
         // On positione l'oiseau a 1/10 du bord
@@ -79,8 +82,6 @@ const render = () => {
 
                 //remove pipe + create new one
                 pipes = [...pipes.slice(1), [pipes[pipes.length-1][0] + pipeGap + pipeWidth, pipeLoc()]];
-                console.log(pipes);
-
             }
             //if hit the pipe, end
             if ([
@@ -95,7 +96,23 @@ const render = () => {
     }
 
     document.getElementById('bestScore').innerHTML = `Meilleur : ${bestScore}`;
-    document.getElementById('currentScore').innerHTML = `Actuel : ${currentScore}`;
+    actuel.innerHTML = `Actuel : ${currentScore}`;
+    
+    // ajout de la difficulté
+    if(currentScore >= 5) {
+        speed = 10;
+    }if (currentScore >= 10) {
+        speed = 12;
+    }if (currentScore >= 15) {
+        speed = 14;
+    }if (currentScore >= 20) {
+        speed = 16;
+    } if (currentScore >= 25) {
+        speed = 18;
+    } if (currentScore >= 30) {
+        speed = 20;
+    } 
+
     // fait jouer en boucle la focntion render
     window.requestAnimationFrame(render);
 }
