@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-A live demo is available here => (https://floppy-bird-ten.vercel.app/)
+A live demo is available here (https://floppy-bird-ten.vercel.app/)
 
 ## How to use
 
@@ -18,11 +18,12 @@ Play Game with the mouse
 
 ## How does it work
 
-This game is a clone of "Flappy-Bird" than you con open in your browser and play with a views like on mobile.
+This game is a clone of "Flappy-Bird" than you can open in your browser and play with a views like on mobile.
 
 ## Customization
 
 To change the parameter of the Game changes the "general settings `line 7`" in `script. js`
+
 `const gravity = 0.8;`
 
 Change the gravity
@@ -40,3 +41,4 @@ The game goes more harder all five score points, do not forget to change too in 
 ## Technologies used
 
 Object oriented javascript
+CSS
