@@ -2,11 +2,11 @@
 
 "Floppy-Bird" is a clone of "Flappy-Bird" do not hesitate to test the games and have fun.
 
-![Alt text](<media/Capture%20d%E2%80%99%C3%A9cran%20(236).png>)
+![Alt text](<media/Capture%20d%E2%80%99%C3%A9cran%20(238).png>)
 
 ## Live Demo
 
-A live demo is available [here] (https://floppy-bird-ten.vercel.app/)
+A live demo is available here => (https://floppy-bird-ten.vercel.app/)
 
 ## How to use
 
@@ -22,7 +22,7 @@ This game is a clone of "Flappy-Bird" than you con open in your browser and play
 
 ## Customization
 
-To change de parameter of the Game change the general settings in `script.js`
+To change de parameter of the Game change the "general settings" in `script.js`
 
 `const gravity = 0.8;`
 
@@ -36,4 +36,4 @@ Change the speed
 
 To change the size of jump
 
-The game go more harder all five score points, do not forget to changes too
+The game go more harder all five score points, do not forget to changes too in "add dificulty `line 163`" in `script.js`
