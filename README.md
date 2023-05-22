@@ -22,11 +22,10 @@ This game is a clone of "Flappy-Bird" than you con open in your browser and play
 
 ## Customization
 
-To change de parameter of the Game change the "general settings" in `script.js`
-
+To change the parameter of the Game changes the "general settings `line 7`" in `script. js`
 `const gravity = 0.8;`
 
-Change de gravity
+Change the gravity
 
 `let speed = 8;`
 
@@ -34,6 +33,10 @@ Change the speed
 
 `const jump = -12;`
 
-To change the size of jump
+To change the size of the jump
 
-The game go more harder all five score points, do not forget to changes too in "add dificulty `line 163`" in `script.js`
+The game goes more harder all five score points, do not forget to change too in "add difficulty `line 163`" in `script.js`
+
+## Technologies used
+
+Object oriented javascript
