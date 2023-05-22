@@ -41,4 +41,5 @@ The game goes more harder all five score points, do not forget to change too in 
 ## Technologies used
 
 Object oriented javascript
+
 CSS
